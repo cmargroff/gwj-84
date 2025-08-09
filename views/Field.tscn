@@ -1,8 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://hfwf1f28qojg"]
+[gd_scene load_steps=8 format=3 uid="uid://hfwf1f28qojg"]
 
 [ext_resource type="Script" uid="uid://dctkpvbam8nk0" path="res://components/game/LinkedPath.cs" id="1_1t68p"]
 [ext_resource type="Script" uid="uid://bywkwpgn1ki35" path="res://components/enemies/EnemyMover.cs" id="1_1u8jg"]
 [ext_resource type="Texture2D" uid="uid://gflrqts57o6o" path="res://icon.svg" id="1_cw2k4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1t68p"]
+noise_type = 3
+frequency = 0.0012
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qrvat"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_1t68p")
 
 [sub_resource type="Curve2D" id="Curve2D_1u8jg"]
 _data = {
@@ -25,6 +33,7 @@ scale = Vector2(1, 1)
 script = ExtResource("1_1u8jg")
 Path = NodePath("../Path2D")
 MoveSpeed = 200.0
+Noise = SubResource("NoiseTexture2D_qrvat")
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyMover"]
 texture = ExtResource("1_cw2k4")
