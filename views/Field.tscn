@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://hfwf1f28qojg"]
+
+[ext_resource type="Script" uid="uid://dctkpvbam8nk0" path="res://components/game/LinkedPath.cs" id="1_1t68p"]
+[ext_resource type="Script" uid="uid://bywkwpgn1ki35" path="res://components/enemies/EnemyMover.cs" id="1_1u8jg"]
+[ext_resource type="Texture2D" uid="uid://gflrqts57o6o" path="res://icon.svg" id="1_cw2k4"]
+
+[sub_resource type="Curve2D" id="Curve2D_1u8jg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1061, 318, 146, 42, -146, -42, 494, 436, -134, -84, 134, 84, 777, 12, -264, -123, 264, 123, 230, 300, 227, 19, -227, -19, 262, 45)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_qrvat"]
+_data = {
+"points": PackedVector2Array(274, -13, -274, 13, 4, 73, 228.5, -156, -228.5, 156, 494, 436, -134, -84, 134, 84, 777, 12, -264, -123, 264, 123, 230, 300, 227, 19, -227, -19, 262, 45, 0, 0, 0, 0, 191, 96)
+}
+point_count = 6
+
+[node name="Field" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="." node_paths=PackedStringArray("NextPath")]
+position = Vector2(69, 52)
+curve = SubResource("Curve2D_1u8jg")
+script = ExtResource("1_1t68p")
+NextPath = NodePath("../Path2D2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(1061, 318)
+rotates = false
+loop = false
+script = ExtResource("1_1u8jg")
+MoveSpeed = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+texture = ExtResource("1_cw2k4")
+
+[node name="Path2D2" type="Path2D" parent="."]
+position = Vector2(326, 24)
+curve = SubResource("Curve2D_qrvat")
