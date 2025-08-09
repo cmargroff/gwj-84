@@ -12,27 +12,28 @@ point_count = 5
 
 [sub_resource type="Curve2D" id="Curve2D_qrvat"]
 _data = {
-"points": PackedVector2Array(274, -13, -274, 13, 4, 73, 228.5, -156, -228.5, 156, 494, 436, -134, -84, 134, 84, 777, 12, -264, -123, 264, 123, 230, 300, 227, 19, -227, -19, 262, 45, 0, 0, 0, 0, 191, 96)
+"points": PackedVector2Array(274, 18.3026, -274, -18.3026, 4, 73, 228.5, -156, -228.5, 156, 494, 436, -134, -84, 134, 84, 777, 12, -264, -123, 264, 123, 230, 300, 227, 19, -227, -19, 262, 45, 0, 0, 0, 0, 191, 96)
 }
 point_count = 6
 
 [node name="Field" type="Node2D"]
+
+[node name="EnemyMover" type="Node2D" parent="." node_paths=PackedStringArray("Path")]
+position = Vector2(1130, 370)
+rotation = 2.93641
+scale = Vector2(1, 1)
+script = ExtResource("1_1u8jg")
+Path = NodePath("../Path2D")
+MoveSpeed = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyMover"]
+texture = ExtResource("1_cw2k4")
 
 [node name="Path2D" type="Path2D" parent="." node_paths=PackedStringArray("NextPath")]
 position = Vector2(69, 52)
 curve = SubResource("Curve2D_1u8jg")
 script = ExtResource("1_1t68p")
 NextPath = NodePath("../Path2D2")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(1061, 318)
-rotates = false
-loop = false
-script = ExtResource("1_1u8jg")
-MoveSpeed = 200.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
-texture = ExtResource("1_cw2k4")
 
 [node name="Path2D2" type="Path2D" parent="."]
 position = Vector2(326, 24)
